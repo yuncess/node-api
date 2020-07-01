@@ -12,6 +12,24 @@ var indexRouter = require('./routes/index');
 // 创建项目实例
 var app = express();
 
+//允许跨域
+app.all('*', function (req, res, next) {
+  var orginList = ['http://localhost:3000'];
+  if (orginList.includes(req.headers.origin.toLowerCase())) {
+    //设置允许跨域的域名，*代表允许任意域名跨域
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+  }
+  //允许的header类型
+  res.header('Access-Control-Allow-Headers', 'content-type');
+  //跨域允许的请求方式
+  res.header('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS');
+  if (req.method.toLowerCase() == 'options') {
+    res.send(200); //让options尝试请求快速结束
+  } else {
+    next();
+  }
+});
+
 // 定义EJS模板引擎和模板文件位置，也可以使用jade或其他模型引擎
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,24 +47,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 匹配路径和路由
 app.use('/', indexRouter);
-
-//允许跨域
-app.all('*', function (req, res, next) {
-  var orginList = ['http://localhost:3000/'];
-  if (orginList.includes(req.headers.origin.toLowerCase())) {
-    //设置允许跨域的域名，*代表允许任意域名跨域
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-  }
-  //允许的header类型
-  res.header('Access-Control-Allow-Headers', 'content-type');
-  //跨域允许的请求方式
-  res.header('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS');
-  if (req.method.toLowerCase() == 'options') {
-    res.send(200); //让options尝试请求快速结束
-  } else {
-    next();
-  }
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
