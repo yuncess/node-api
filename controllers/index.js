@@ -1,11 +1,7 @@
 var express = require('express');
-var client = require('./../models/client.js').client;
+var client = require('../lib/client.js').client;
 var router = express.Router();
 const dbName = 'demo1';
-
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
 router.post('/add', function (req, res, next) {
   var json = req.body.content;
