@@ -1,5 +1,7 @@
 var express = require('express');
+var client = require('./../models/client.js').client;
 var router = express.Router();
+const dbName = 'demo1';
 
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
