@@ -1,5 +1,5 @@
 var express = require('express');
-var client = require('../lib/client.js').client;
+var client = require('../lib/client').client;
 var router = express.Router();
 const dbName = 'demo1';
 

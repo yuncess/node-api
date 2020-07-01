@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
-var routes = require('./routes.js');
+var routes = require('./routes');
 
 // 创建项目实例
 var app = express();
@@ -43,6 +43,11 @@ app.use(cookieParser());
 // 定义静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 匹配路径和路由
+routes.map((item) => {
+  app.use(item.url, item.target);
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -58,11 +63,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-// 匹配路径和路由
-routes.map((item) => {
-  app.use(item.url, item.target);
 });
 
 // 输出模型app
