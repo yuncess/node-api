@@ -14,8 +14,9 @@ router.post('/add', function (req, res, next) {
       if (error) {
         console.log('insert database faile');
       }
+      res.setHeader('Content-type', 'application/json;charset=utf-8');
+      res.end(JSON.stringify({ data: true }));
       console.log('insert database successfully');
-      client.close();
     });
   });
 });
