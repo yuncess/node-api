@@ -1,0 +1,53 @@
+Arguments: 
+  /Users/zhangqianyun/.nvm/versions/node/v10.18.1/bin/node /Users/zhangqianyun/.nvm/versions/node/v10.18.1/bin/yarn add jsonwebtokens --save
+
+PATH: 
+  /usr/local/bin/:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/zhangqianyun/.nvm/versions/node/v10.18.1/bin:/usr/local/bin/:/usr/local/MongoDB/bin:/usr/local/MongoDB/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.18.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.npm.taobao.org/jsonwebtokens: Not found
+      at Request.params.callback [as _callback] (/Users/zhangqianyun/.nvm/versions/node/v10.18.1/lib/node_modules/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/Users/zhangqianyun/.nvm/versions/node/v10.18.1/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/Users/zhangqianyun/.nvm/versions/node/v10.18.1/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/Users/zhangqianyun/.nvm/versions/node/v10.18.1/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "nodejs-demo",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www"
+    },
+    "dependencies": {
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "dotenv": "^8.2.0",
+      "ejs": "~2.6.1",
+      "express": "~4.16.1",
+      "http-errors": "~1.6.3",
+      "mongoose": "^5.9.20",
+      "morgan": "~1.9.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
