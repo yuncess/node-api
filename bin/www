@@ -15,6 +15,7 @@ require('dotenv').config();
 //定义启动端口
 
 var port = normalizePort(process.env.PORT || '3000');
+console.log('\033[32m' + `http://localhost:${port}` + '\033[0m');
 app.set('port', port);
 
 /**
