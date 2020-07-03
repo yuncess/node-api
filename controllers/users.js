@@ -6,27 +6,25 @@ const dbName = 'demo1';
 
 router.post('/add', function (req, res, next) {
   var json = req.body;
-  console.log(req.body);
   client.connect((err) => {
     const db = client.db(dbName);
-    db.collection('babies').insertOne(json, function (error, result) {
+    db.collection('users').insertOne(json, function (error, result) {
       if (error) {
-        console.log('insert database faile');
+        console.log('insert user faile');
       }
       res.setHeader('Content-type', 'application/json;charset=utf-8');
       res.json({ data: true });
       res.end();
-      console.log('insert database successfully');
+      console.log('insert user successfully');
     });
   });
 });
 
-router.post('/quary', function (req, res, next) {
+router.post('/login', function (req, res, next) {
   var params = req.body;
-  console.log(req.body);
   client.connect((err) => {
     const db = client.db(dbName);
-    const users = db.collection('users');
+    const users = db.collection('users'); //users
     if (!params.name) {
       res.send({ data: false, message: '用户名不能为空' });
     } else {
@@ -40,6 +38,22 @@ router.post('/quary', function (req, res, next) {
         }
       });
     }
+  });
+});
+
+router.get('/delete/:id', function (req, res, next) {
+  const _id = req.params.id;
+  client.connect((err) => {
+    const db = client.db(dbName);
+    const users = db.collection('users'); //users
+    users.deleteOne({ _id }, (error, result) => {
+      if (error) {
+        console.log('delete user faile');
+      } else {
+        res.send({ data: true });
+        console.log('delete user successfully');
+      }
+    });
   });
 });
 
