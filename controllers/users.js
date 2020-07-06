@@ -41,18 +41,31 @@ router.post('/login', function (req, res, next) {
   });
 });
 
-router.get('/delete/:id', function (req, res, next) {
-  const _id = req.params.id;
+router.get('/delete/:name', function (req, res, next) {
+  const name = req.params.name;
   client.connect((err) => {
     const db = client.db(dbName);
     const users = db.collection('users'); //users
-    users.deleteOne({ _id }, (error, result) => {
+    users.deleteOne({ name }, (error, result) => {
       if (error) {
         console.log('delete user faile');
       } else {
         res.send({ data: true });
         console.log('delete user successfully');
       }
+    });
+  });
+});
+
+router.get('/quary', function (req, res, next) {
+  client.connect((err) => {
+    const db = client.db(dbName);
+    const users = db.collection('users'); //users
+    let cursor = users.find();
+    cursor.toArray((error, documents) => {
+      res.send({
+        data: documents,
+      });
     });
   });
 });
